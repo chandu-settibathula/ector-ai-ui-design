@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ector AI</title>
+    <!-- Elms Sans Google Font -->
+
+    <link rel="icon" href="images/faviconimage.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Sidebar Backdrop Overlay -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <button class="icon-btn desktop-menu-btn" id="menu-btn" title="Toggle Sidebar">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <span class="nav-text">New Chat</span>
+                </button>
+            </div>
+
+            <div class="sidebar-recent">
+                <span class="nav-text section-title">Recent Chats</span>
+                <ul class="history-list">
+                    <li class="history-item active">
+                        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                        <span class="nav-text">New Chat</span>
+                    </li>
+                    <li class="history-item">
+                        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                        <span class="nav-text">Async JavaScript Explained</span>
+                    </li>
+                    <li class="history-item">
+                        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                        <span class="nav-text">How to use Ector</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="nav-item" id="nav-advanced">
+                    <ion-icon name="sparkles-outline"></ion-icon>
+                    <span class="nav-text">Ector Advanced</span>
+                </div>
+                <div class="nav-item" id="nav-help">
+                    <ion-icon name="help-circle-outline"></ion-icon>
+                    <span class="nav-text">Help & Support</span>
+                </div>
+                <div class="nav-item" id="nav-settings">
+                    <ion-icon name="settings-outline"></ion-icon>
+                    <span class="nav-text">Settings</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" title="Open Menu">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </button>
+                    
+                    <!-- Model Selector with Dropdown -->
+                    <div class="dropdown-wrapper">
+                        <button class="model-selector" id="model-selector-btn">
+                            <span id="current-model-name">Ector 1.5 Pro</span>
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </button>
+                        
+                        <div class="dropdown-menu model-dropdown" id="model-dropdown">
+                            <div class="dropdown-item" data-model="Ector 1.5 Flash">
+                                <div class="model-info">
+                                    <span class="model-title">Ector 1.5 Flash</span>
+                                    <span class="model-desc">Fast, lightweight for high-frequency tasks</span>
+                                </div>
+                                <ion-icon name="checkmark-outline" class="check-icon"></ion-icon>
+                            </div>
+
+                            <div class="dropdown-item active" data-model="Ector 1.5 Pro">
+                                <div class="model-info">
+                                    <span class="model-title">Ector 1.5 Pro</span>
+                                    <span class="model-desc">Complex reasoning & coding tasks</span>
+                                </div>
+                                <ion-icon name="checkmark-outline" class="check-icon"></ion-icon>
+                            </div>
+                            
+                            <div class="dropdown-item" data-model="Ector 1.0 Ultra">
+                                <div class="model-info">
+                                    <span class="model-title">Ector 1.0 Ultra</span>
+                                    <span class="model-desc">Max capability for highly complex tasks</span>
+                                </div>
+                                <ion-icon name="checkmark-outline" class="check-icon"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile Badge -->
+                <div class="user-profile" title="User Account">
+                    <div class="avatar-badge"><ion-icon name="person-outline"></ion-icon></div>
+                </div>
+            </header>
+
+            <!-- Chat Scroll Area -->
+            <div class="chat-area" id="chat-area">
+                <div class="welcome-screen" id="welcome-screen">
+                    <h1 class="greeting">
+                        <span class="gradient-text">Hello, Developer</span>
+                    </h1>
+                    <h2>How can I help you today?</h2>
+
+                    <div class="cards-grid">
+                        <div class="card" onclick="useSuggestion('Suggest a Python script for web scraping')">
+                            <p>Suggest a Python script for web scraping</p>
+                            <span class="card-icon"><ion-icon name="code-slash-outline"></ion-icon></span>
+                        </div>
+                        <div class="card" onclick="useSuggestion('Explain Quantum Computing in simple terms')">
+                            <p>Explain Quantum Computing in simple terms</p>
+                            <span class="card-icon"><ion-icon name="bulb-outline"></ion-icon></span>
+                        </div>
+                        <div class="card" onclick="useSuggestion('Create a modern CSS grid layout')">
+                            <p>Create a modern CSS grid layout</p>
+                            <span class="card-icon"><ion-icon name="color-palette-outline"></ion-icon></span>
+                        </div>
+                        <div class="card" onclick="useSuggestion('Draft a follow-up email after an interview')">
+                            <p>Draft a follow-up email after an interview</p>
+                            <span class="card-icon"><ion-icon name="create-outline"></ion-icon></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messages-container"></div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="input-wrapper">
+                <input type="file" id="file-input" hidden multiple>
+                
+                <div class="input-container" id="input-container">
+                    <div class="attachments-preview" id="attachments-preview"></div>
+
+                    <!-- Input Row Perfectly Center Aligned -->
+                    <div class="input-row">
+                        <!-- Attachment Dropdown -->
+                        <div class="dropdown-wrapper">
+                            <button class="icon-btn" id="attach-btn" title="Add attachment">
+                                <ion-icon name="attach-outline"></ion-icon>
+                            </button>
+
+                            <div class="dropdown-menu attach-dropdown" id="attach-dropdown">
+                                <div class="dropdown-item" id="opt-upload-computer">
+                                    <ion-icon name="desktop-outline"></ion-icon>
+                                    <span>Upload from computer</span>
+                                </div>
+                                <div class="dropdown-item" id="opt-upload-image">
+                                    <ion-icon name="image-outline"></ion-icon>
+                                    <span>Upload image</span>
+                                </div>
+                                <div class="dropdown-item" id="opt-drive">
+                                    <ion-icon name="logo-google-drive"></ion-icon>
+                                    <span>Add from Google Drive</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <textarea id="prompt-input" rows="1" placeholder="Ask Ector..."></textarea>
+                        
+                        <div class="input-actions">
+                            <button class="icon-btn" id="mic-btn" title="Use Voice">
+                                <ion-icon name="mic-outline"></ion-icon>
+                            </button>
+                            <button class="icon-btn send-btn" id="send-btn" title="Send Prompt">
+                                <ion-icon name="arrow-up-outline" id="send-icon"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="disclaimer">
+                    Ector may display inaccurate info, so double-check its responses.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-backdrop" id="settings-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="icon-btn close-modal" data-modal="settings-modal"><ion-icon name="close-outline"></ion-icon></button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>Theme Mode</label>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme-val="dark">
+                            <ion-icon name="moon-outline"></ion-icon> Dark
+                        </button>
+                        <button class="theme-btn" data-theme-val="light">
+                            <ion-icon name="sunny-outline"></ion-icon> Light
+                        </button>
+                        <button class="theme-btn" data-theme-val="oled">
+                            <ion-icon name="contrast-outline"></ion-icon> OLED Black
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>Accent Color</label>
+                    <div class="accent-options">
+                        <button class="accent-dot active" data-accent-val="default" style="background: linear-gradient(135deg, #4285f4, #9b51e0);"></button>
+                        <button class="accent-dot" data-accent-val="emerald" style="background: linear-gradient(135deg, #10b981, #06b6d4);"></button>
+                        <button class="accent-dot" data-accent-val="sunset" style="background: linear-gradient(135deg, #f59e0b, #ef4444);"></button>
+                    </div>
+                </div>
+                <div class="setting-group row-between">
+                    <div>
+                        <div class="setting-title">Clear Chat History</div>
+                        <div class="setting-desc">Remove all local conversation logs.</div>
+                    </div>
+                    <button class="btn-secondary danger" id="clear-chats-btn">Clear All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help & Support Modal -->
+    <div class="modal-backdrop" id="help-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Help & Support</h3>
+                <button class="icon-btn close-modal" data-modal="help-modal"><ion-icon name="close-outline"></ion-icon></button>
+            </div>
+            <div class="modal-body">
+                <div class="faq-item">
+                    <h4><ion-icon name="help-circle-outline"></ion-icon> How to upload files?</h4>
+                    <p>Click the paperclip icon in the prompt bar to choose computer files, images, or Google Drive attachments.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><ion-icon name="phone-portrait-outline"></ion-icon> Mobile Navigation</h4>
+                    <p>Tap the menu icon on the top left of mobile screens to slide out the history navigation drawer.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><ion-icon name="color-palette-outline"></ion-icon> Dynamic Themes</h4>
+                    <p>Go to Settings to toggle Light Mode, Dark Mode, OLED Black, or change accent colors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ionicons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
