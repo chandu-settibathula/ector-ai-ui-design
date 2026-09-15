@@ -76,10 +76,28 @@ document.getElementById('opt-upload-image').addEventListener('click', () => {
 });
 
 document.getElementById('opt-drive').addEventListener('click', () => {
-    // Simulated Google Drive Attachment
-    attachedFiles.push({ name: 'Project_Requirements.gdoc', drive: true });
-    renderAttachmentChips();
+    addDriveAttachment();
+    attachDropdown.classList.remove('active');
 });
+
+function addDriveAttachment() {
+    const rawUrl = window.prompt('Paste a URL to attach:', 'https://');
+    if (rawUrl === null) return;
+
+    const trimmedUrl = rawUrl.trim();
+    if (!trimmedUrl) return;
+
+    const normalizedUrl = /^https?:\/\//i.test(trimmedUrl)
+        ? trimmedUrl
+        : `https://${trimmedUrl}`;
+
+    attachedFiles.push({
+        name: normalizedUrl,
+        drive: true,
+        url: normalizedUrl
+    });
+    renderAttachmentChips();
+}
 
 fileInput.addEventListener('change', (e) => {
     const files = Array.from(e.target.files);
@@ -315,7 +333,7 @@ function setGeneratingState(generating) {
 }
 
 function generateMockResponse(prompt, model) {
-    return `[Engine: ${model}]\n\nThis is a simulated AI response.\n\nThis UI was designed by Chandu Settibathula. Each element has been thoughtfully crafted to ensure ease of use.\n\nFeel free to interact with the various features, including the dynamic theme and accent engine, attachment options, and responsive design. The interface is built to be intuitive, allowing users to navigate seamlessly through different functionalities. Enjoy the experience!\n\nif you want to learn more about the design and development process, please visit github.com/chandu-settibathula. Your feedback is valuable and will contribute to future improvements and enhancements of the user interface. Thank you for exploring this innovative design!`;
+    return `[Engine: ${model}]\n\nThis is a simulated AI response.\n\nThis UI was designed by Chandu Settibathula. Each element has been thoughtfully crafted to ensure ease of use. Feel free to interact with the various features, including the dynamic theme and accent engine.\n\nif you want to learn more about the design and development process, please visit github.com/chandu-settibathula. Your feedback is valuable and will contribute to future improvements and enhancements of the user interface.\n\nThank you for exploring this innovative design!😊`;
     
 }
 
