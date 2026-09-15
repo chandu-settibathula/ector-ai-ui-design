@@ -57,6 +57,22 @@
     --scrollbar-thumb-hover: rgba(255, 255, 255, 0.7);
 }
 
+/* --- Dynamic Accent Color Rules --- */
+[data-accent="default"] {
+    --accent-gradient: linear-gradient(135deg, #4285f4, #9b51e0, #d96570);
+    --accent-color: #4285f4;
+}
+
+[data-accent="emerald"] {
+    --accent-gradient: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+    --accent-color: #10b981;
+}
+
+[data-accent="sunset"] {
+    --accent-gradient: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
+    --accent-color: #ef4444;
+}
+
 /* --- High-Visibility Custom Scrollbar Styling --- */
 * {
     margin: 0;
@@ -633,6 +649,11 @@ body {
     color: var(--text-secondary);
     margin-top: 10px;
 }
+.disclaimer a {
+    margin-top: 4px;
+    color: var(--accent-color);
+    text-decoration: none;
+}
 
 /* --- Modals --- */
 .modal-backdrop {
@@ -858,4 +879,21 @@ body {
     .welcome-screen h1, .welcome-screen h2 {
         font-size: 1.8rem;
     }
+}
+
+
+/* --- Collapsed Sidebar Fixes --- */
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .section-title {
+    display: none; /* Removes text completely from the flex layout */
+}
+
+.sidebar.collapsed .new-chat-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
